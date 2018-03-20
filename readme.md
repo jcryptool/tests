@@ -3,7 +3,7 @@ JCrypTool Tests
 
 The **JCrypTool Tests** repository contains all JCrypTool test fragments and plug-ins. None of these projects is working without it's corresponding main plug-in available in the [JCrypTool Core](https://github.com/jcryptool/core) or [JCrypTool Crypto](https://github.com/jcryptool/crypto) repository.
 
-Have a look at our [wiki](https://github.com/jcryptool/core/wiki) for more information, especially the [Getting started as a JCrypTool Developer](https://github.com/jcryptool/core/wiki/Getting-started-as-a-JCrypTool-Developer) page. Feel free to ask any question you might have in our [developers group](http://groups.google.com/group/jcryptool-developers).
+Have a look at our [wiki](https://github.com/jcryptool/core/wiki) for more information, especially the [Getting started as a JCrypTool Developer](https://github.com/jcryptool/core/wiki/Getting-started-as-a-JCrypTool-Developer) page. Feel free to ask any question you might have in our [developers group](http://groups.google.com/group/jcryptool-developers) or in our [gitter chat](https://gitter.im/dschadow/jcryptool).
 
 JCrypTool downloads are available as [weekly builds](https://github.com/jcryptool/core/releases) (unstable, built automatically based on the **develop** branch) and as [release builds](https://www.cryptool.org/en/jct-downloads/jct-stable) (stable).
 
