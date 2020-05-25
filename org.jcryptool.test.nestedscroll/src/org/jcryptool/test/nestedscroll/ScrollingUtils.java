@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
+import org.jcryptool.test.nestedscroll.ScrollingUtils.ScrollableControl;
 
 public class ScrollingUtils {
 
@@ -24,17 +25,13 @@ public class ScrollingUtils {
 
 		public Control control;
 		public ScrollBar scrollBar;
-		
 		public ScrollableControl(Control control, ScrollBar scrollBar) {
 			super();
 			this.control = control;
 			this.scrollBar = scrollBar;
 		}
-		
-		
-		
 		public static Optional<ScrollableControl> ofWidgetOptional(Widget w) {
-			String prefix = w.toString().indexOf("ScrolledComposite") > -1 ? "SC!!: " : "";
+			String prefix=w.toString().indexOf("ScrolledComposite") > -1 ? "SC!!: " : "";
 			if (! (w instanceof Control)) {
 				return Optional.empty();
 			}
@@ -130,47 +127,23 @@ public class ScrollingUtils {
 				.collect(Collectors.toList());
 	}
 
-	
-	/**
-	 * Checks if the innerScrollableBar reached the top or bottom position.
-	 * @param control
-	 * @param innerScrollableBar
-	 * @param e
-	 * @return True, if the scrollbar reached the top or bottom. False, if the scrollbar is somewhere between the 
-	 * top and bottom.
-	 */
+	// TODO: this method is rough on the edges. scroll increment, and accuracy to the pixel may not be good enough
 	public static boolean isScrollEventWithoutEffectHere(Control control, ScrollBar innerScrollableBar, MouseEvent e) {
 
+		int txtbar_circamaxReachable = getMaxReachableCirca(control, innerScrollableBar);
 		int direction = e.count < 0 ? ScrollableControl.DOWN : ScrollableControl.UP; 
-		
-		int minimalPos = innerScrollableBar.getMinimum();
 		int currentPos = innerScrollableBar.getSelection();
-		int maximalPos = innerScrollableBar.getMaximum();
-		int thumbSize = innerScrollableBar.getThumb();
-		
-//		System.out.println("minimalPos " + minimalPos + "; currentPos " + currentPos + "; maximalPos " + maximalPos + "; thumbSize " + thumbSize + ";");
 	
-		
-		if (direction == ScrollableControl.UP && currentPos == minimalPos) {
+		if (direction == ScrollableControl.UP && currentPos <= Math.abs(e.count)) {
 			return true;
 		}
-		if (direction == ScrollableControl.DOWN && currentPos + thumbSize == maximalPos) {
+		if (direction == ScrollableControl.DOWN && currentPos >= txtbar_circamaxReachable - Math.abs(e.count)) {
 			return true;
 		}
 		return false;
 	}
 
-//	public static int getMaxReachableCirca(Control control, ScrollBar txtbar) {
-//		System.out.println("txtbar maximum " + txtbar.getMaximum() + "  txtbar minimum " + txtbar.getMinimum() + " txtbar selection "  + txtbar.getSelection());
-//		System.out.println("control bounds: " + control.getBounds().toString());
-//		// TODO: txtbar.getMaximum() - control.getBounds().height
-//		// Hier ist das Problem, dass txtbar.getmaximum nichts in Pixeln
-//		// angibt. Daher sollte hier keine subtraktion mit der Höhe des
-//		// controls stattfinden. 
-//		// txtbar 
-//		int controlheight = control.getBounds().height;
-//		
-//		
-//		return txtbar.getMaximum() - control.getBounds().height;
-//	}
+	public static int getMaxReachableCirca(Control control, ScrollBar txtbar) {
+		return txtbar.getMaximum()-control.getBounds().height;
+	}
 }
