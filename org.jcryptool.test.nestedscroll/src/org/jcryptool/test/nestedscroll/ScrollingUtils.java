@@ -151,10 +151,10 @@ public class ScrollingUtils {
 //		System.out.println("minimalPos " + minimalPos + "; currentPos " + currentPos + "; maximalPos " + maximalPos + "; thumbSize " + thumbSize + ";");
 	
 		
-		if (direction == ScrollableControl.UP && currentPos == minimalPos) {
+		if (direction == ScrollableControl.UP && currentPos <= minimalPos) {
 			return true;
 		}
-		if (direction == ScrollableControl.DOWN && currentPos + thumbSize == maximalPos) {
+		if (direction == ScrollableControl.DOWN && currentPos + thumbSize >= maximalPos) {
 			return true;
 		}
 		return false;
