@@ -7,6 +7,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="C:/Users/thorb/Downloads/junit-4.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
