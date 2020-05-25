@@ -57,7 +57,7 @@ public class ScrollTest extends Shell {
 		lblNewLabel.setBounds(0, 0, 53, 14);
 		lblNewLabel.setText("New Label");
 		
-		txtTextfieldLine = new Text(composite, SWT.BORDER | SWT.H_SCROLL| SWT.READ_ONLY | SWT.MULTI);
+		txtTextfieldLine = new Text(composite, SWT.BORDER | SWT.READ_ONLY | SWT.MULTI);
 		txtTextfieldLine.setText("textfield line 1 mit einem super lanegen tet der dfjsdkfj ejfklsjdfkl  ajsdklfjaslkd jflsk df\ntextfield line 2\ntextfield line 3\ntextfield line 4\ntextfield line 5\ntextfield line 6\ntextfield line 7\ntextfield line 8\ntextfield line 9\ntextfield line 10\ntextfield line 11\ntextfield line 12\ntextfield line 13\ntextfield line 14\ntextfield line 15\ntextfield line 16\ntextfield line 17\ntextfield line 18\ntextfield line 19\ntextfield line 20\ntextfield line 21\ntextfield line 22\ntextfield line 23\ntextfield line 24\ntextfield line 25\ntextfield line 26\ntextfield line 27\ntextfield line 28\n\n");
 		GridData gd_txtTextfieldLine = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
 		gd_txtTextfieldLine.heightHint = 110;
@@ -67,18 +67,15 @@ public class ScrollTest extends Shell {
 		txtTextfieldLine.addMouseWheelListener(new MouseWheelListener() {
 			@Override
 			public void mouseScrolled(MouseEvent e) {
-				ScrollableControl thisAsScrollable;
-				if ((txtTextfieldLine.getStyle() & SWT.V_SCROLL) != 0) {
-					thisAsScrollable = new ScrollingUtils.ScrollableControl(txtTextfieldLine, txtTextfieldLine.getVerticalBar());
-				} else if ((txtTextfieldLine.getStyle() & SWT.H_SCROLL) != 0) {
-					thisAsScrollable = new ScrollingUtils.ScrollableControl(txtTextfieldLine, txtTextfieldLine.getHorizontalBar());
-				} else {
-					thisAsScrollable = new ScrollingUtils.ScrollableControl(txtTextfieldLine, null);
-				}
-					
-					
-				
-				thisAsScrollable.propagateScrollIfNecessary(e);
+//				ScrollableControl thisAsScrollable;
+//				if ((txtTextfieldLine.getStyle() & SWT.V_SCROLL) != 0) {
+//					thisAsScrollable = new ScrollingUtils.ScrollableControl(txtTextfieldLine, txtTextfieldLine.getVerticalBar());
+//				} else if ((txtTextfieldLine.getStyle() & SWT.H_SCROLL) != 0) {
+//					thisAsScrollable = new ScrollingUtils.ScrollableControl(txtTextfieldLine, txtTextfieldLine.getHorizontalBar());
+//				} else {
+//					thisAsScrollable = new ScrollingUtils.ScrollableControl(txtTextfieldLine, null);
+//				}
+//				thisAsScrollable.propagateScrollIfNecessary(e);
 			}
 		});
 
