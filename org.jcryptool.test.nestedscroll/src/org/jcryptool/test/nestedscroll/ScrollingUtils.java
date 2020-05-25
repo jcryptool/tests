@@ -43,8 +43,12 @@ public class ScrollingUtils {
 			}
 			if (c instanceof Text) {
 				Text text = (Text) c;
-				if (ScrollingUtils.controlHasFlag(text, SWT.V_SCROLL)) {
-					return Optional.of(new ScrollableControl(text, text.getVerticalBar()));
+				if (ScrollingUtils.controlHasFlag(text, new int[] {SWT.V_SCROLL, SWT.H_SCROLL, SWT.READ_ONLY})) {
+					if (text.getVerticalBar() != null) {
+						return Optional.of(new ScrollableControl(text, text.getVerticalBar()));
+					} else if (text.getHorizontalBar() != null) {
+						return Optional.of(new ScrollableControl(text, text.getHorizontalBar()));
+					} 
 				}
 			}
 			return Optional.empty();
@@ -114,8 +118,21 @@ public class ScrollingUtils {
 		return result;
 	}
 
-	public static boolean controlHasFlag(Control c, int flag) {
-		return (c.getStyle() & flag) != 0;
+	/**
+	 * Checks if the control has one or more flags set.
+	 * @param c 
+	 * @param flags
+	 * @return True, if the control has one or more of the given flags set. False, if
+	 * none of the given flags is set.
+	 */
+	public static boolean controlHasFlag(Control c, int[] flags) {
+		boolean result = false;
+		for (int flag : flags) {
+			if ((c.getStyle() & flag) != 0) {
+				result = true;
+			}
+		}
+		return result;
 	}
 
 	public static List<ScrollableControl> getScrollableWidgetsAbove(Control control) {
@@ -136,18 +153,21 @@ public class ScrollingUtils {
 
 		int direction = e.count < 0 ? ScrollableControl.DOWN : ScrollableControl.UP;
 
-		int minimalPos = innerScrollableBar.getMinimum();
-		int currentPos = innerScrollableBar.getSelection();
-		int maximalPos = innerScrollableBar.getMaximum();
-		int thumbSize = innerScrollableBar.getThumb();
+		if (innerScrollableBar != null) {
+			int minimalPos = innerScrollableBar.getMinimum();
+			int currentPos = innerScrollableBar.getSelection();
+			int maximalPos = innerScrollableBar.getMaximum();
+			int thumbSize = innerScrollableBar.getThumb();
 
-		if (direction == ScrollableControl.UP && currentPos <= minimalPos) {
-			return true;
+			if (direction == ScrollableControl.UP && currentPos <= minimalPos) {
+				return true;
+			}
+			if (direction == ScrollableControl.DOWN && currentPos + thumbSize >= maximalPos) {
+				return true;
+			}
+			return false;
 		}
-		if (direction == ScrollableControl.DOWN && currentPos + thumbSize >= maximalPos) {
-			return true;
-		}
-		return false;
+		return true;
 	}
 
 }
