@@ -1,37 +1,22 @@
 package org.jcryptool.visual.rsa_elgamal.textbook.test.impl.algo;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
+import org.jcryptool.mvc.IProcess;
+import org.jcryptool.mvc.IState;
+import org.jcryptool.visual.rsa_elgamal.textbook.control.RSAKeygen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.google.common.collect.Lists;
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.subjects.BehaviorSubject;
 
-import com.diffplug.common.base.Box;
 import com.diffplug.common.base.Errors;
 import com.diffplug.common.rx.Rx;
 import com.diffplug.common.rx.RxBox;
-import com.diffplug.common.rx.RxListener;
 
-import org.jcryptool.visual.rsa_elgamal.textbook.generic.IProcess;
-import org.jcryptool.visual.rsa_elgamal.textbook.generic.IState;
-import org.jcryptool.visual.rsa_elgamal.textbook.impl.rsa.RSAKeys;
-import org.jcryptool.visual.rsa_elgamal.textbook.impl.rsa.RSAPublicKey;
-import org.jcryptool.visual.rsa_elgamal.textbook.process.EncryptSequenceProcess;
-import org.jcryptool.visual.rsa_elgamal.textbook.process.RSAKeygen;
-import org.jcryptool.visual.rsa_elgamal.textbook.process.RSAKeygen.RSAKeygenState;
+import io.reactivex.Observable;
+import io.reactivex.subjects.BehaviorSubject;
 
 class ProcessesBasicsRSA {
 
@@ -81,8 +66,6 @@ class ProcessesBasicsRSA {
 		subj1.onNext(BigInteger.valueOf(6));
 		
 		Observable.error(() -> new RuntimeException("bla")).onErrorReturnItem("Hello world!").subscribe(System.out::println);
-		
-		subj1.map
 		
 
 	}
