@@ -1,8 +1,8 @@
 package org.jcryptool.visual.rsa_elgamal.textbook.test.impl.algo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.jcryptool.visual.rsa_elgamal.textbook.impl.proto.World;
+import org.jcryptool.visual.rsa_elgamal.textbook.model.world.World;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
